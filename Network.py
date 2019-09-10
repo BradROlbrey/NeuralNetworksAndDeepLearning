@@ -18,7 +18,51 @@ class Network:
 			# E.g., weights[1] is a list containing the weights connecting the second layer to the third.
 
 
+	# Returns the output of the neural net given an input, a.
+	def feedforward(self, a):
+		print("weights")
+		for elem in self.weights:
+			print('Layer')
+			print(elem)
+		print()
+
+		print("biases")
+		for elem in self.biases:
+			print('Layer')
+			print(elem)
+		print()
+
+		print("weights and biases")
+		for elem in zip(self.weights, self.biases):
+			print('\t Layer a to a+1')
+			for elem2 in elem:
+				print(elem2)
+			print()
+		print()
+
+		print("biases and weights")
+		for elem in zip(self.biases, self.weights):
+			print('\t Layer a to a+1')
+			for elem2 in elem:
+				print(elem2)
+			print()
+		print()
+
+		# The zip pairs the weights and biases for each layer
+		#	so we can get the output values for this layer.
+		# We loop to feed forward all the way to the output.
+		for w, b in zip(self.weights, self.biases):
+			a = sigmoid(np.dot(w, a) + b)
+		return a
+
+
 ### Miscellaneous functions
+
+# Used by Network.feedforward
+# 	Takes as input wa+b for each node and applies the sigmoid
+# 		function to each element.
+# Returns a list of the final activation/output values for each node in
+# 	the layer.
 def sigmoid(a):
 	# Operations on a numpy array are applied individually to each element.
 	# So this will return a list of elements with the operations below
