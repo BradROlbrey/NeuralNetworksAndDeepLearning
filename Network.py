@@ -24,18 +24,7 @@ class Network:
 		#	so we can get the output values for this layer.
 		# We loop to feed forward all the way to the output.
 		for w, b in zip(self.weights, self.biases):
-			print("\nDot product w and a")
-			print(a)
-			print(w)
-			print(np.dot(w, a))
-			print("\nAdd b to the dot product")
-			print(np.dot(w, a))
-			print(b)
-			print(np.dot(w, a) + b)
-			print("\nGet the sigmoid for the final outputs of this layer")
 			a = sigmoid(np.dot(w, a) + b)
-			print(a)
-			print()
 		return a
 
 
