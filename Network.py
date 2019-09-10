@@ -1,3 +1,4 @@
+import random
 
 import numpy as np
 
@@ -26,6 +27,40 @@ class Network:
 		for w, b in zip(self.weights, self.biases):
 			a = sigmoid(np.dot(w, a) + b)
 		return a
+
+	"""Train the neural network using mini-batch stochastic
+	gradient descent."""
+	# Input params:
+	#	training_data: a list of tuples "(x, y)" representing the
+	#		training inputs and the desired outputs.
+	#	epochs: number of "epochs" to train for. One epoch involves training over
+	#		the entire training data set.
+	#	batch_size: size of the batches to divide training_data into.
+	#	eta: learning rate.
+	def SGD(self, training_data, epochs, batch_size, eta):
+
+		n = len(training_data)
+		for epoch in range(epochs):
+
+			# Get the mini batches
+			random.shuffle(training_data)
+			mini_batches = [
+				training_data[k : k + batch_size]
+				for k in range(0, n, batch_size)  # increment by batch_size
+			]
+
+			# Train on each mini batch
+			for mini_batch in mini_batches:
+				self.train_on_mini_batch(mini_batch, eta)
+
+			print("Epoch {} complete".format(epoch))
+
+
+	"""Update the network's weights and biases by applying
+	gradient descent using backpropagation to a single mini batch."""
+	def train_on_mini_batch(self, mini_batch, eta):
+		return
+
 
 
 ### Miscellaneous functions
