@@ -20,9 +20,30 @@ class Network:
 		#print(sizes[1:])
 		# for elem in self.biases:
 		# 	print(elem)
-		for elem in self.weights:
-			print(elem)
+		# for elem in self.weights:
+		# 	print(elem)
 
 		# size_test = [4, 5, 6, 7, 3]
 		# for elem in zip(size_test[:-1], size_test[1:]):
 		# 	print(elem)
+
+### Miscellaneous functions
+def sigmoid(a):
+	z = 3
+	print(np.exp(z))
+
+	z = np.asarray([1, 3, 4])
+	print(-z)
+
+	y = np.exp(z)
+	print(y)
+	print(1 + y)
+	print(1/(1 + y))
+
+
+	# Operations on a numpy array are applied individually to each element.
+	# So this will return a list of elements with the operations below
+	# 	applied individually to each element.
+	# The list is for a whole layer, consists of the activation values for
+	# 	each node.
+	return 1.0/(1.0 + np.exp(-a))
