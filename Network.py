@@ -9,7 +9,14 @@ class Network:
 	def __init__(self, sizes):
 		self.num_layers = len(sizes)
 		self.sizes = sizes
-		self.biases = [np.random.randn(y, 1) for y in sizes[1:]]
+		self.biases = [np.random.randn(y) for y in sizes[1:]]
+		#print(self.biases)
+
+		print('original')
+		print(np.random.randn(3, 1))  # We don't want a list of single-elem lists.
+		print('my fix')
+		print(np.random.randn(3))  # We want a list of elements.
+
 			# There is one bias for each node, except for those in the input layer.
 		self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
 			# Except for the input layer...
@@ -20,39 +27,20 @@ class Network:
 
 	# Returns the output of the neural net given an input, a.
 	def feedforward(self, a):
-		print("weights")
-		for elem in self.weights:
-			print('Layer')
-			print(elem)
-		print()
-
-		print("biases")
-		for elem in self.biases:
-			print('Layer')
-			print(elem)
-		print()
-
-		print("weights and biases")
-		for elem in zip(self.weights, self.biases):
-			print('\t Layer a to a+1')
-			for elem2 in elem:
-				print(elem2)
-			print()
-		print()
-
-		print("biases and weights")
-		for elem in zip(self.biases, self.weights):
-			print('\t Layer a to a+1')
-			for elem2 in elem:
-				print(elem2)
-			print()
-		print()
-
 		# The zip pairs the weights and biases for each layer
 		#	so we can get the output values for this layer.
 		# We loop to feed forward all the way to the output.
 		for w, b in zip(self.weights, self.biases):
+			print(a)
+			print(w)
+			print(np.dot(w, a))
+			print()
+			print(b)
+			print(np.dot(w, a) + b)
+			print()
 			a = sigmoid(np.dot(w, a) + b)
+			print(a)
+			print('\n')
 		return a
 
 
