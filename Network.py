@@ -10,13 +10,6 @@ class Network:
 		self.num_layers = len(sizes)
 		self.sizes = sizes
 		self.biases = [np.random.randn(y) for y in sizes[1:]]
-		#print(self.biases)
-
-		print('original')
-		print(np.random.randn(3, 1))  # We don't want a list of single-elem lists.
-		print('my fix')
-		print(np.random.randn(3))  # We want a list of elements.
-
 			# There is one bias for each node, except for those in the input layer.
 		self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
 			# Except for the input layer...
@@ -31,16 +24,18 @@ class Network:
 		#	so we can get the output values for this layer.
 		# We loop to feed forward all the way to the output.
 		for w, b in zip(self.weights, self.biases):
+			print("\nDot product w and a")
 			print(a)
 			print(w)
 			print(np.dot(w, a))
-			print()
+			print("\nAdd b to the dot product")
+			print(np.dot(w, a))
 			print(b)
 			print(np.dot(w, a) + b)
-			print()
+			print("\nGet the sigmoid for the final outputs of this layer")
 			a = sigmoid(np.dot(w, a) + b)
 			print(a)
-			print('\n')
+			print()
 		return a
 
 
